@@ -25,18 +25,15 @@ class ArrayComp extends React.Component{
             if(currentState.numberRepeatations[currentNumber]){
                 repeat = currentState.numberRepeatations[currentNumber] + 1;
             }
-            let numberRepeatations = {...currentState.numberRepeatations, [currentNumber]: repeat}
-            let numbersToDisplay = []
-            let max = 0;
+            let numberRepeatations = {...currentState.numberRepeatations,[currentNumber]: repeat}
+            let numbersToDisplay = [];
+            let sortedArray = []
             for(let number in numberRepeatations){
-                let repeatation = numberRepeatations[number]
-                if(repeatation > max){
-                    numbersToDisplay.unshift(...Array(repeatation).fill(number))
-                    max = repeatation;
-                } else {
-                    numbersToDisplay.push(...Array(repeatation).fill(number))
-                }
+                sortedArray.push([number,numberRepeatations[number]])
             }
+            sortedArray.sort((a,b) => parseInt(b[1])-parseInt(a[1])).forEach((e) => {
+                numbersToDisplay.push(...Array(e[1]).fill(e[0]))
+            })
             return {...currentState, numberRepeatations, numbersToDisplay, current:''}
         })
     }
