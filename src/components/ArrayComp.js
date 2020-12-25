@@ -31,7 +31,7 @@ class ArrayComp extends React.Component{
             for(let number in numberRepeatations){
                 sortedArray.push([number,numberRepeatations[number]])
             }
-            sortedArray.sort((a,b) => parseInt(b[1])-parseInt(a[1])).forEach((e) => {
+            sortedArray.sort((a,b) => b[1]-a[1]).forEach((e) => {
                 numbersToDisplay.push(...Array(e[1]).fill(e[0]))
             })
             return {...currentState, numberRepeatations, numbersToDisplay, current:''}
